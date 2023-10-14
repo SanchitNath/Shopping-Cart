@@ -1,0 +1,93 @@
+ 2023-10-15 04:00:26,270 [INFO CommonMethods:24] Open url: https://react-shopping-cart-67954.firebaseapp.com/
+ 2023-10-15 04:00:28,159 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//div[text()='Free shipping']/following-sibling::div[@alt]") delay:10
+ 2023-10-15 04:00:28,703 [INFO CommonMethods:107] Elements = 13
+ 2023-10-15 04:00:28,792 [INFO ProductPage:27] Free shipping products = ['Cropped Stay Groovy off white', 'Basic Cactus White T-shirt', 'Black Tule Oversized', 'Black Batman T-shirt', 'Blue T-Shirt', 'Loose Black T-shirt', 'Ringer Hall Pass', 'Grey T-shirt', 'Black T-shirt with white stripes', 'Slim black T-shirt', 'Blue Sweatshirt', 'Tropical Wine T-shirt', 'Marine Blue T-shirt']
+ 2023-10-15 04:00:28,800 [INFO CommonMethods:107] Elements = 16
+ 2023-10-15 04:00:28,884 [INFO ProductPage:34] All products = ['Cropped Stay Groovy off white', 'Basic Cactus White T-shirt', 'Skater Black Sweatshirt', 'Black Tule Oversized', 'Black Batman T-shirt', 'Blue T-Shirt', 'Loose Black T-shirt', 'Ringer Hall Pass', 'Grey T-shirt', 'Black T-shirt with white stripes', 'Turtles Ninja T-shirt', 'Slim black T-shirt', 'Blue Sweatshirt', 'White T-shirt Gucci', 'Tropical Wine T-shirt', 'Marine Blue T-shirt']
+ 2023-10-15 04:00:28,884 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//div[text()='Free shipping']/following-sibling::div[@alt]") delay:10
+ 2023-10-15 04:00:29,898 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//div[@title='Products in cart quantity']") delay:10
+ 2023-10-15 04:00:29,912 [INFO CommonMethods:91] Click element - ('xpath', "//div[@title='Products in cart quantity']")
+ 2023-10-15 04:00:29,958 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//div[text()='Free shipping']/following-sibling::div[@alt]") delay:10
+ 2023-10-15 04:00:29,970 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//button[@title='remove product from cart']") delay:20
+ 2023-10-15 04:00:50,107 [INFO ProductPage:280] Cart is empty already
+ 2023-10-15 04:00:50,108 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//div[text()='Free shipping']/following-sibling::div[@alt]") delay:10
+ 2023-10-15 04:00:50,138 [INFO ProductPage:79] Inside free_shipping() -> ['Cropped Stay Groovy off white', 'Basic Cactus White T-shirt', 'Black Tule Oversized', 'Black Batman T-shirt', 'Blue T-Shirt', 'Loose Black T-shirt', 'Ringer Hall Pass', 'Grey T-shirt', 'Black T-shirt with white stripes', 'Slim black T-shirt', 'Blue Sweatshirt', 'Tropical Wine T-shirt', 'Marine Blue T-shirt']
+ 2023-10-15 04:00:50,138 [INFO CommonMethods:73] Item picked randomly = 'Black T-shirt with white stripes' from list = ['Cropped Stay Groovy off white', 'Basic Cactus White T-shirt', 'Black Tule Oversized', 'Black Batman T-shirt', 'Blue T-Shirt', 'Loose Black T-shirt', 'Ringer Hall Pass', 'Grey T-shirt', 'Black T-shirt with white stripes', 'Slim black T-shirt', 'Blue Sweatshirt', 'Tropical Wine T-shirt', 'Marine Blue T-shirt']
+ 2023-10-15 04:00:50,139 [INFO CommonMethods:91] Click element - ('xpath', "(//div[text()='Free shipping']/following::p[text()='Black T-shirt with white stripes']/following::button[text()='Add to cart'])[1]")
+ 2023-10-15 04:00:50,195 [INFO ProductPage:72] Product selected added in dict = {'Black T-shirt with white stripes': 1}
+ 2023-10-15 04:00:50,195 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//span[text()='Cart']//following::p[text()='Black T-shirt with white stripes']") delay:10
+ 2023-10-15 04:00:50,214 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//div[text()='Free shipping']/following-sibling::div[@alt]") delay:10
+ 2023-10-15 04:00:50,228 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//span[text()='X']") delay:10
+ 2023-10-15 04:00:50,245 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//span[text()='Cart']/preceding-sibling::*/div") delay:10
+ 2023-10-15 04:00:50,262 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//p[text()='SUBTOTAL']") delay:10
+ 2023-10-15 04:00:50,278 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//p[text()='SUBTOTAL']/following::p[contains(text(),'$')]") delay:10
+ 2023-10-15 04:00:50,294 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//button[text()='Checkout']") delay:10
+ 2023-10-15 04:00:50,315 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//span[text()='Cart']/preceding-sibling::*/div") delay:10
+ 2023-10-15 04:00:50,338 [INFO CommonMethods:57] Get text - ('xpath', "//span[text()='Cart']/preceding-sibling::*/div") text:1
+ 2023-10-15 04:00:50,338 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//span[text()='Cart']//following::p[text()='Black T-shirt with white stripes']") delay:10
+ 2023-10-15 04:00:50,350 [INFO CommonMethods:30] Wait for element visible - ('xpath', "(//p[text()='Black T-shirt with white stripes'])[last()]/following::p[contains(text(),'$')]") delay:10
+ 2023-10-15 04:00:50,365 [INFO CommonMethods:84] Wait for element presence - ('xpath', "//p[text()='Black T-shirt with white stripes']/following-sibling::p[contains(., 'Quantity')]") delay:10
+ 2023-10-15 04:00:50,374 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//p[text()='Black T-shirt with white stripes']/following-sibling::p[contains(., 'Quantity')]") delay:10
+ 2023-10-15 04:00:50,398 [INFO CommonMethods:57] Get text - ('xpath', "//p[text()='Black T-shirt with white stripes']/following-sibling::p[contains(., 'Quantity')]") text:X | Adidas originals
+Quantity: 1
+ 2023-10-15 04:00:50,398 [INFO CommonMethods:91] Click element - ('xpath', "//span[text()='X']")
+ 2023-10-15 04:00:50,437 [INFO CommonMethods:44] Wait until element not visible - ('xpath', "//button[text()='Checkout']") delay:10
+ 2023-10-15 04:00:50,445 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//div[text()='Free shipping']/following-sibling::div[@alt]") delay:10
+ 2023-10-15 04:00:50,458 [INFO ProductPage:79] Inside free_shipping() -> ['Cropped Stay Groovy off white', 'Basic Cactus White T-shirt', 'Black Tule Oversized', 'Black Batman T-shirt', 'Blue T-Shirt', 'Loose Black T-shirt', 'Ringer Hall Pass', 'Grey T-shirt', 'Black T-shirt with white stripes', 'Slim black T-shirt', 'Blue Sweatshirt', 'Tropical Wine T-shirt', 'Marine Blue T-shirt']
+ 2023-10-15 04:00:50,458 [INFO CommonMethods:73] Item picked randomly = 'Ringer Hall Pass' from list = ['Cropped Stay Groovy off white', 'Basic Cactus White T-shirt', 'Black Tule Oversized', 'Black Batman T-shirt', 'Blue T-Shirt', 'Loose Black T-shirt', 'Ringer Hall Pass', 'Grey T-shirt', 'Black T-shirt with white stripes', 'Slim black T-shirt', 'Blue Sweatshirt', 'Tropical Wine T-shirt', 'Marine Blue T-shirt']
+ 2023-10-15 04:00:50,458 [INFO CommonMethods:91] Click element - ('xpath', "(//div[text()='Free shipping']/following::p[text()='Ringer Hall Pass']/following::button[text()='Add to cart'])[1]")
+ 2023-10-15 04:00:50,503 [INFO ProductPage:72] Product selected added in dict = {'Black T-shirt with white stripes': 1, 'Ringer Hall Pass': 1}
+ 2023-10-15 04:00:50,503 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//span[text()='Cart']//following::p[text()='Ringer Hall Pass']") delay:10
+ 2023-10-15 04:00:50,519 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//div[text()='Free shipping']/following-sibling::div[@alt]") delay:10
+ 2023-10-15 04:00:50,535 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//span[text()='X']") delay:10
+ 2023-10-15 04:00:50,547 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//span[text()='Cart']/preceding-sibling::*/div") delay:10
+ 2023-10-15 04:00:50,560 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//p[text()='SUBTOTAL']") delay:10
+ 2023-10-15 04:00:50,573 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//p[text()='SUBTOTAL']/following::p[contains(text(),'$')]") delay:10
+ 2023-10-15 04:00:50,587 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//button[text()='Checkout']") delay:10
+ 2023-10-15 04:00:50,600 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//span[text()='Cart']/preceding-sibling::*/div") delay:10
+ 2023-10-15 04:00:50,626 [INFO CommonMethods:57] Get text - ('xpath', "//span[text()='Cart']/preceding-sibling::*/div") text:2
+ 2023-10-15 04:00:50,626 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//span[text()='Cart']//following::p[text()='Ringer Hall Pass']") delay:10
+ 2023-10-15 04:00:50,637 [INFO CommonMethods:30] Wait for element visible - ('xpath', "(//p[text()='Ringer Hall Pass'])[last()]/following::p[contains(text(),'$')]") delay:10
+ 2023-10-15 04:00:50,652 [INFO CommonMethods:84] Wait for element presence - ('xpath', "//p[text()='Ringer Hall Pass']/following-sibling::p[contains(., 'Quantity')]") delay:10
+ 2023-10-15 04:00:50,661 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//p[text()='Ringer Hall Pass']/following-sibling::p[contains(., 'Quantity')]") delay:10
+ 2023-10-15 04:00:50,685 [INFO CommonMethods:57] Get text - ('xpath', "//p[text()='Ringer Hall Pass']/following-sibling::p[contains(., 'Quantity')]") text:X | White T-shirt
+Quantity: 1
+ 2023-10-15 04:00:50,685 [INFO CommonMethods:91] Click element - ('xpath', "//span[text()='X']")
+ 2023-10-15 04:00:50,721 [INFO CommonMethods:44] Wait until element not visible - ('xpath', "//button[text()='Checkout']") delay:10
+ 2023-10-15 04:00:50,729 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//div[text()='Free shipping']/following-sibling::div[@alt]") delay:10
+ 2023-10-15 04:00:50,740 [INFO ProductPage:95] Inside add_shipping() -> []
+ 2023-10-15 04:00:50,740 [INFO ProductPage:103] Paid products = ['White T-shirt Gucci', 'Turtles Ninja T-shirt', 'Skater Black Sweatshirt']
+ 2023-10-15 04:00:50,740 [INFO CommonMethods:73] Item picked randomly = 'Skater Black Sweatshirt' from list = ['White T-shirt Gucci', 'Turtles Ninja T-shirt', 'Skater Black Sweatshirt']
+ 2023-10-15 04:00:50,740 [INFO CommonMethods:91] Click element - ('xpath', "(//div[text()='Free shipping']/following::p[text()='Skater Black Sweatshirt']/following::button[text()='Add to cart'])[1]")
+ 2023-10-15 04:00:50,786 [INFO ProductPage:72] Product selected added in dict = {'Black T-shirt with white stripes': 1, 'Ringer Hall Pass': 1, 'Skater Black Sweatshirt': 1}
+ 2023-10-15 04:00:50,786 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//span[text()='Cart']//following::p[text()='Skater Black Sweatshirt']") delay:10
+ 2023-10-15 04:00:50,804 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//div[text()='Free shipping']/following-sibling::div[@alt]") delay:10
+ 2023-10-15 04:00:50,818 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//span[text()='X']") delay:10
+ 2023-10-15 04:00:50,830 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//span[text()='Cart']/preceding-sibling::*/div") delay:10
+ 2023-10-15 04:00:50,844 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//p[text()='SUBTOTAL']") delay:10
+ 2023-10-15 04:00:50,856 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//p[text()='SUBTOTAL']/following::p[contains(text(),'$')]") delay:10
+ 2023-10-15 04:00:50,870 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//button[text()='Checkout']") delay:10
+ 2023-10-15 04:00:50,882 [INFO CommonMethods:30] Wait for element visible - ('xpath', "(//p[text()='Black T-shirt with white stripes'])[last()]/following::p[contains(text(),'$')]") delay:10
+ 2023-10-15 04:00:50,905 [INFO CommonMethods:57] Get text - ('xpath', "(//p[text()='Black T-shirt with white stripes'])[last()]/following::p[contains(text(),'$')]") text:$ 14.90
+ 2023-10-15 04:00:50,906 [INFO CommonMethods:30] Wait for element visible - ('xpath', "(//p[text()='Ringer Hall Pass'])[last()]/following::p[contains(text(),'$')]") delay:10
+ 2023-10-15 04:00:50,930 [INFO CommonMethods:57] Get text - ('xpath', "(//p[text()='Ringer Hall Pass'])[last()]/following::p[contains(text(),'$')]") text:$ 10.90
+ 2023-10-15 04:00:50,930 [INFO CommonMethods:30] Wait for element visible - ('xpath', "(//p[text()='Skater Black Sweatshirt'])[last()]/following::p[contains(text(),'$')]") delay:10
+ 2023-10-15 04:00:50,961 [INFO CommonMethods:57] Get text - ('xpath', "(//p[text()='Skater Black Sweatshirt'])[last()]/following::p[contains(text(),'$')]") text:$ 25.90
+ 2023-10-15 04:00:50,961 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//p[text()='SUBTOTAL']/following::p[contains(text(),'$')]") delay:10
+ 2023-10-15 04:00:50,984 [INFO CommonMethods:57] Get text - ('xpath', "//p[text()='SUBTOTAL']/following::p[contains(text(),'$')]") text:$ 51.70
+ 2023-10-15 04:00:50,985 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//div[text()='Free shipping']/following-sibling::div[@alt]") delay:10
+ 2023-10-15 04:00:50,997 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//span[text()='X']") delay:10
+ 2023-10-15 04:00:51,010 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//span[text()='Cart']/preceding-sibling::*/div") delay:10
+ 2023-10-15 04:00:51,022 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//p[text()='SUBTOTAL']") delay:10
+ 2023-10-15 04:00:51,034 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//p[text()='SUBTOTAL']/following::p[contains(text(),'$')]") delay:10
+ 2023-10-15 04:00:51,046 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//button[text()='Checkout']") delay:10
+ 2023-10-15 04:00:51,058 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//p[text()='SUBTOTAL']/following::p[contains(text(),'$')]") delay:10
+ 2023-10-15 04:00:51,083 [INFO CommonMethods:57] Get text - ('xpath', "//p[text()='SUBTOTAL']/following::p[contains(text(),'$')]") text:$ 51.70
+ 2023-10-15 04:00:51,083 [INFO CommonMethods:91] Click element - ('xpath', "//button[text()='Checkout']")
+ 2023-10-15 04:00:53,127 [INFO ProductPage:365] Clicked on checkout button
+ 2023-10-15 04:00:53,127 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//p[text()='SUBTOTAL']/following::p[contains(text(),'$')]") delay:10
+ 2023-10-15 04:00:53,142 [INFO CommonMethods:84] Wait for element presence - ('xpath', "//p[text()='SUBTOTAL']/following::p[contains(text(),'$')]") delay:10
+ 2023-10-15 04:00:53,191 [INFO CommonMethods:57] Get text - ('xpath', "//p[text()='SUBTOTAL']/following::p[contains(text(),'$')]") text:$ 51.70
+ 2023-10-15 04:00:53,191 [INFO ProductPage:138] Total price saved = 51.7
+ 2023-10-15 04:00:53,191 [INFO CommonMethods:30] Wait for element visible - ('xpath', "//div[text()='Free shipping']/following-sibling::div[@alt]") delay:10
+ 2023-10-15 04:00:53,206 [INFO ProductPage:379] Total value saved = 0.0
