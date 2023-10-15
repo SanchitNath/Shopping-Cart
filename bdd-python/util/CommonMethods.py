@@ -107,9 +107,8 @@ class CommonMethods():
         logger.info(f"Elements = {len(elements)}")
         return elements
 
-    def get_alert_text(self, delay=10):
-        self.wait(delay).until(EC.alert_is_present())
-        alert = self.driver.switch_to.alert()
+    def get_alert_text(self):
+        alert = self.driver.switch_to.alert
         text = alert.text
         logger.info("Get text -> " + str(text))
         time.sleep(1)
