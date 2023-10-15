@@ -13,7 +13,7 @@ sudo apt-get install python3-behave
 behave --version
 ```
 
-Install Gherkin Plugin from :-
+Install Gherkin Plugin :-
 ```
 File > Settings > Plugins > Marketplace
 Search "Gherkin"
@@ -28,8 +28,13 @@ pip install --user pipenv
 # End-to-end tests
 To run any feature file:
 ```
-Setup configuration by entering name, path of features folder
-behave test/features/{filename}.feature
+1. Setup configuration by entering name, path of features folder
+2. behave test/features/{filename}.feature
+```
+
+If tag is used, run ->
+```
+2. behave tests/features/{filename}.feature --tags {tagname}
 ```
 
 
