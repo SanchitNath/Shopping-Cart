@@ -17,9 +17,10 @@ class ProductPage:
     def __init__(self, driver):
         self.driver = driver
         self.cm = CommonMethods(driver)
-        self.cm.wait_for_element_visible(pl.freeShippingProducts)
 
     def get_product_list(self):
+        time.sleep(2)
+        self.cm.wait_for_element_visible(pl.freeShippingProducts)
         all_free_shipping_elements = self.cm.get_elements(pl.freeShippingProducts)
         for afse in all_free_shipping_elements:
             free_shipping_products = afse.get_attribute('alt')
@@ -359,33 +360,37 @@ class ProductPage:
         self.verify_button_text_in_cart()
         total_price_shown = self.cm.get_text(pl.subTotalPrice)[2:]
         total_price_shown = float(total_price_shown)
+        # Update the price shown
+        self.save_total_price()
         if total_price_shown > 0.0:
+            time.sleep(2)
             self.cm.click_element(pl.checkoutBtn)
             time.sleep(2)
             logger.info("Clicked on checkout button")
         else:
             logger.warn("Price shown is 0.0, order can be placed but please add items in cart!!")
-        # Update the price shown
-        self.save_total_price()
+        logger.info("Order placed")
 
     def verify_price_shown_in_alert(self):
         """
         Verify the price shown in alert
         :return:
         """
+        total_price = 0.0
+        logger.info("Verify price shown")
+        time.sleep(5)
+        alert_text = self.cm.get_alert_text()
+        logger.info(f"Text shown in alert {alert_text}")
+        price_shown_alert = alert_text[23:]
+        logger.info(f"Price shown in alert {price_shown_alert}")
+        logger.info(f"Total value saved = {self.sub_total_price}")
         if self.sub_total_price != 0.0:
             total_price = self.sub_total_price
             logger.info(f"total price = {total_price}")
-        logger.info(f"Total value saved = {self.sub_total_price}")
-        alert_text = self.cm.get_alert_text()
-        logger.info(f"Text shown in alert {alert_text}")
-        # price_shown_alert = alert_text[23:]
-        # logger.info(f"Price shown in alert {price_shown_alert}")
-        # if total_price > 0.0:
-        #     # Verify the price in cart
-        #     assert total_price in alert_text, f"alert text - {alert_text} isn't showing correct subtotal price"
-        #     assert total_price == price_shown_alert, f"Price shown in alert should be {total_price} not {price_shown_alert}!"
+        if total_price > 0.0:
+            # Verify the price in cart
+            assert total_price in alert_text, f"alert text - {alert_text} isn't showing correct subtotal price"
+            assert total_price == float(price_shown_alert), f"Price shown in alert should be {total_price} not {price_shown_alert}!"
         # else:
         #     # Verify the alert message only
         #     assert alert_text == "Add some products in the cart!", "Change the RHS message to assert!"
-
