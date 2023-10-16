@@ -6,13 +6,12 @@ from util.logger_util import get_logger
 logger = get_logger(__name__)
 
 class ProductPage:
-    product_count_dic = {}
-    print(f"Empty Dictionary: {product_count_dic}")
     product_added = None
+    global product_count_dic
+    product_count_dic = {}
     free_shipping_products_list = []
     all_products_list = []
     non_free_shipping_products_list = []
-    sub_total_price = 0.0
     price_of_item = 0.0
     def __init__(self, driver):
         self.driver = driver
@@ -35,8 +34,30 @@ class ProductPage:
         logger.info(f"All products = {self.all_products_list}")
         assert self.all_products_list != [], f"All products aren't present"
 
-
-
+    def user_empties_cart(self):
+        """
+        User empties the cart, verify - price, count change to 0
+        Make the dictionary of save data empty, check the price again and save it globally
+        :return:
+        """
+        try:
+            global product_count_dic
+            product_count_dic = {}
+            self.cm.wait_for_element_visible(pl.removeIconInCart, 10)
+            close_icon_list = self.cm.get_elements(pl.removeIconInCart, 5)
+            for close_icon in close_icon_list:
+                self.cm.click_element(pl.removeIconInCart)
+            self.verify_price_reduced()
+            # Verify message shown
+            self.cm.wait_for_element_visible(pl.emptyCartMessage)
+            self.verify_count_reduced()
+            # product_count_dic.clear()
+            # Update the price shown
+        except:
+            logger.info("Cart is empty already")
+        self.save_total_price()
+        logger.info(
+            f"User has emptied the cart as saved product is {product_count_dic} and total price is {sub_total_price}")
     def select_filter(self, filter_type):
         """
         Apply filter according to sizes
@@ -60,17 +81,17 @@ class ProductPage:
         :param item:
         :return:
         """
-        if len(self.product_count_dic) == 0:
+        if product_count_dic == {}:
             # For first item, the count will be 1
-            self.product_count_dic[item] = 1
+            product_count_dic[item] = 1
         else:
-            if item not in self.product_count_dic.keys():
+            if item not in product_count_dic.keys():
                 # For any new entry of item in dict, the count will be 1
-                self.product_count_dic[item] = 1
+                product_count_dic[item] = 1
             else:
                 # For rest all, the count will be increased by 1 everytime it gets added
-                self.product_count_dic[item] += 1
-        logger.info(f"Product selected added in dict = {self.product_count_dic}")
+                product_count_dic[item] += 1
+        logger.info(f"Product selected added in dict = {product_count_dic}")
 
     def add_free_shipping_to_cart(self):
         """
@@ -134,9 +155,10 @@ class ProductPage:
         Save the total price shown
         :return:
         """
+        global sub_total_price
         total_price_shown = self.cm.get_text(pl.subTotalPrice)[2:]
-        self.sub_total_price = float(total_price_shown)
-        logger.info(f"Total price saved = {self.sub_total_price}")
+        sub_total_price = float(total_price_shown)
+        logger.info(f"Total price saved = {sub_total_price}")
 
     def save_price(self, product):
         """
@@ -160,31 +182,32 @@ class ProductPage:
         # Assert the total count of product is correct
         total_count_in_cart = self.cm.get_text(pl.totalCountInCart)
         total_count_in_cart = int(total_count_in_cart)
-        total_from_dic = 0
-        values_from_dic = self.product_count_dic.values()
-        for value in values_from_dic:
-            total_from_dic += int(value)
-        assert total_count_in_cart == total_from_dic, f"Total count is wrong as cart shows '{total_count_in_cart}' count"
-        # Verify the last added item & it's quantity from dict, it's price (visible)
-        last_added_distinct_product = list(self.product_count_dic.keys())[-1]
-        quantity_of_last_added_product = list(self.product_count_dic.values())[-1]
-        last_item_in_cart = (
-            pl.itemInCart[0],
-            pl.itemInCart[1].replace("product_name", last_added_distinct_product),
-        )
-        self.cm.wait_for_element_visible(last_item_in_cart)
-        price_of_last_item_in_cart = (
-            pl.priceOfItemInCart[0],
-            pl.priceOfItemInCart[1].replace("product_name", last_added_distinct_product),
-        )
-        self.cm.wait_for_element_visible(price_of_last_item_in_cart)
-        quantity_item_in_cart = (
-            pl.quantityOfItemInCart[0],
-            pl.quantityOfItemInCart[1].replace("product_name", last_added_distinct_product),
-        )
-        self.cm.wait_for_element_presence(quantity_item_in_cart)
-        quantity_in_cart = self.cm.get_text(quantity_item_in_cart)
-        assert str(quantity_of_last_added_product) in quantity_in_cart, f"Quantity of {last_added_distinct_product} product is stored as '{quantity_of_last_added_product}' in dict but is '{quantity_in_cart}'"
+        if total_count_in_cart != 0:
+            total_from_dic = 0
+            values_from_dic = product_count_dic.values()
+            for value in values_from_dic:
+                total_from_dic += int(value)
+            assert total_count_in_cart == total_from_dic, f"Total count is wrong as cart shows '{total_count_in_cart}' count"
+            # Verify the last added item & it's quantity from dict, it's price (visible)
+            last_added_distinct_product = list(product_count_dic.keys())[-1]
+            quantity_of_last_added_product = list(product_count_dic.values())[-1]
+            last_item_in_cart = (
+                pl.itemInCart[0],
+                pl.itemInCart[1].replace("product_name", last_added_distinct_product),
+            )
+            self.cm.wait_for_element_visible(last_item_in_cart)
+            price_of_last_item_in_cart = (
+                pl.priceOfItemInCart[0],
+                pl.priceOfItemInCart[1].replace("product_name", last_added_distinct_product),
+            )
+            self.cm.wait_for_element_visible(price_of_last_item_in_cart)
+            quantity_item_in_cart = (
+                pl.quantityOfItemInCart[0],
+                pl.quantityOfItemInCart[1].replace("product_name", last_added_distinct_product),
+            )
+            self.cm.wait_for_element_presence(quantity_item_in_cart)
+            quantity_in_cart = self.cm.get_text(quantity_item_in_cart)
+            assert str(quantity_of_last_added_product) in quantity_in_cart, f"Quantity of {last_added_distinct_product} product is stored as '{quantity_of_last_added_product}' in dict but is '{quantity_in_cart}'"
         self.cm.click_element(pl.closeCartIcon)
         self.cm.wait_until_element_not_visible(pl.checkoutBtn)
 
@@ -193,9 +216,9 @@ class ProductPage:
         Verifies that the item added are in-order only
         :return:
         """
-        print(f"Stored data = {self.product_count_dic}")
+        print(f"Stored data = {product_count_dic}")
         # Get the products list and length of the unique products
-        products_in_order = self.product_count_dic.keys()
+        products_in_order = product_count_dic.keys()
         number_of_products = len(products_in_order)
         i = 1
         for product in products_in_order:
@@ -215,7 +238,7 @@ class ProductPage:
         :return:
         """
         self.verify_button_text_in_cart()
-        products_in_order = self.product_count_dic.keys()
+        products_in_order = product_count_dic.keys()
         total_price_calculated = 0
         for product in products_in_order:
             price_of_item = (
@@ -224,7 +247,7 @@ class ProductPage:
             )
             price = self.cm.get_text(price_of_item)
             price = float(price[2:])
-            quantity_of_item = self.product_count_dic[product]
+            quantity_of_item = product_count_dic[product]
             quantity_of_item = int(quantity_of_item)
             total_price_calculated += float(price * quantity_of_item)
             total_price_calculated = round(total_price_calculated, 2)
@@ -255,31 +278,6 @@ class ProductPage:
         time.sleep(1)
         self.cm.wait_for_element_visible(pl.cartIcon)
         self.cm.click_element(pl.cartIcon)
-
-    def user_empties_cart(self):
-        """
-        User empties the cart, verify - price, count change to 0
-        Make the dictionary of save data empty, check the price again and save it globally
-        :return:
-        """
-        try:
-            self.cm.wait_for_element_visible(pl.removeIconInCart, 20)
-            close_icon_list = self.cm.get_elements(pl.removeIconInCart, 5)
-            for close_icon in close_icon_list:
-                self.cm.click_element(pl.removeIconInCart)
-            self.verify_price_reduced()
-            # Verify message shown
-            self.cm.wait_for_element_visible(pl.emptyCartMessage)
-            self.verify_count_reduced()
-            self.product_count_dic = {}
-            self.product_count_dic.clear()
-            # Update the price shown
-            self.save_total_price()
-            logger.info(
-                f"User has emptied the cart as saved product is {self.product_count_dic} and total price is {self.sub_total_price}")
-        except:
-            logger.info("Cart is empty already")
-
 
     def add_item_in_cart(self, product_name):
         """
@@ -322,7 +320,7 @@ class ProductPage:
         :return:
         """
         # Get the products list and check if product_name is present in list
-        products_in_order = self.product_count_dic.keys()
+        products_in_order = product_count_dic.keys()
         quantity_item_in_cart = (
             pl.quantityOfItemInCart[0],
             pl.quantityOfItemInCart[1].replace("product_name", product_name),
@@ -331,7 +329,7 @@ class ProductPage:
         logger.info(f"Quantity in cart = {quantity_in_cart}")
         # This will get the text as "Quantity: " "1"
         if product_name in products_in_order:
-            actual_quantity_product = self.product_count_dic[product_name]
+            actual_quantity_product = product_count_dic[product_name]
             # Assert quantity shown of the item is correct or not
             assert str(actual_quantity_product) in quantity_in_cart, f"Quantity of {product_name} item saved is {actual_quantity_product} and not {quantity_in_cart}!"
             # Find price of product
@@ -348,7 +346,7 @@ class ProductPage:
             calculated_price = float(total_price_before + price)
             total_price_shown = self.cm.get_text(pl.subTotalPrice)[2:]
             total_price_shown = float(total_price_shown)
-            assert calculated_price == total_price_shown, f"Price change should be from {self.sub_total_price} to {total_price_shown} as addition of {price}!!"
+            assert calculated_price == total_price_shown, f"Price change should be from {sub_total_price} to {total_price_shown} as addition of {price}!!"
             # Update the price shown
             self.save_total_price()
 
@@ -383,14 +381,14 @@ class ProductPage:
         logger.info(f"Text shown in alert {alert_text}")
         price_shown_alert = alert_text[23:]
         logger.info(f"Price shown in alert {price_shown_alert}")
-        logger.info(f"Total value saved = {self.sub_total_price}")
-        if self.sub_total_price != 0.0:
-            total_price = self.sub_total_price
+        logger.info(f"Total value saved = {sub_total_price}")
+        if sub_total_price != 0.0:
+            total_price = sub_total_price
             logger.info(f"total price = {total_price}")
         if total_price > 0.0:
             # Verify the price in cart
-            assert total_price in alert_text, f"alert text - {alert_text} isn't showing correct subtotal price"
+            assert str(total_price) in alert_text, f"alert text - {alert_text} isn't showing correct subtotal price"
             assert total_price == float(price_shown_alert), f"Price shown in alert should be {total_price} not {price_shown_alert}!"
-        # else:
-        #     # Verify the alert message only
-        #     assert alert_text == "Add some products in the cart!", "Change the RHS message to assert!"
+        else:
+            # Verify the alert message only
+            assert alert_text == "Add some products in the cart!", "Change the RHS message to assert!"
