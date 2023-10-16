@@ -12,6 +12,7 @@ Background: Launch the browser and open the website
 Scenario: Verify user can delete items in cart
     Then the user opens the cart
     And the user empties the cart
+    And close the cart
     Then the user add free-shipping item in cart
     And close the cart
     And the user add free-shipping item in cart
@@ -28,6 +29,7 @@ Scenario: Verify user can delete items in cart
 Scenario: Verify user is able to place order
     Then the user opens the cart
     And the user empties the cart
+    And close the cart
     Then the user add free-shipping item in cart
     And close the cart
     Then the user add free-shipping item in cart
@@ -40,4 +42,3 @@ Scenario: Verify user is able to place order
     And the user opens the cart
     Then the user verifies price reduced to zero
     And the user verifies count reduced to zero
-
