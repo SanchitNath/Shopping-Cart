@@ -41,10 +41,10 @@ Scenario: Search a single size and filter the items
 Scenario: Search multiple size at once (or) one by one and filter the items
     Then the user apply/remove "S" filter
     And the user apply/remove "M" filter
-    Then items with "S" "M" size gets filtered
+    Then items with double "S" "M" sizes gets filtered
     And the user apply/remove "S" filter
     Then the user apply/remove "M" filter
 
     And the user apply/remove at once "S" "M" filters
-    Then items with "S" "M" size gets filtered
+    Then items with double "S" "M" sizes gets filtered
     And the user apply/remove at once "S" "M" filters
