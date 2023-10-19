@@ -5,7 +5,7 @@ Feature: Filter Validation
 Background: Launch the browser and open the website
     Given Launch the browser
 
-@Scenario1
+@Scenario4
 @smoke @sanity @web
 Scenario: Search a single size and filter the items
     Then the user apply/remove "XS" filter
@@ -36,7 +36,7 @@ Scenario: Search a single size and filter the items
     Then items with "XXL" size gets filtered
     And the user apply/remove "XXL" filter
 
-@Scenario2
+@Scenario5
 @smoke @sanity @web
 Scenario: Search multiple size at once (or) one by one and filter the items
     Then the user apply/remove "S" filter

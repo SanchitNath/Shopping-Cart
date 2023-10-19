@@ -12,6 +12,7 @@ class ProductPage:
     free_shipping_products_list = []
     all_products_list = []
     non_free_shipping_products_list = []
+    global price_of_item
     price_of_item = 0.0
     def __init__(self, driver):
         self.driver = driver
@@ -170,8 +171,7 @@ class ProductPage:
             pl.priceOfItemInCart[1].replace("product_name", product),
         )
         price_of_item = self.cm.get_text(price_of_item_in_cart)[2:]
-        self.price_of_item = price_of_item
-        logger.info(f"Price of {product} item in cart = {self.price_of_item}")
+        logger.info(f"Price of {product} item in cart = {price_of_item}")
 
     def close_the_cart(self):
         """
@@ -338,15 +338,16 @@ class ProductPage:
                 pl.priceOfItemInCart[1].replace("product_name", product_name),
             )
             price_text = self.cm.get_text(price_of_item)
-            price = float(price_text[2:])
+            price_tag = float(price_text[2:])
+            logger.info(f"Price tag = {price_tag} of type = {type(price_tag)}")
             # Get total price
-            total_price_before = self.price_of_item
-            logger.info(f"Total price before = {total_price_before}")
+            total_price_before = sub_total_price
+            logger.info(f"Total price before = {total_price_before} of type = {type(total_price_before)}")
             # Calculate subtotal price change
-            calculated_price = float(total_price_before + price)
+            calculated_price = float(float(total_price_before) + float(price_tag))
             total_price_shown = self.cm.get_text(pl.subTotalPrice)[2:]
             total_price_shown = float(total_price_shown)
-            assert calculated_price == total_price_shown, f"Price change should be from {sub_total_price} to {total_price_shown} as addition of {price}!!"
+            assert calculated_price == total_price_shown, f"Price change should be from {sub_total_price} to {total_price_shown} as addition of {price_tag}, and not the calculated_price={calculated_price}!!"
             # Update the price shown
             self.save_total_price()
 
@@ -392,3 +393,39 @@ class ProductPage:
         else:
             # Verify the alert message only
             assert alert_text == "Add some products in the cart!", "Change the RHS message to assert!"
+
+    def verify_count_shown(self):
+        logger.info(f"Item in cart = {product_count_dic}")
+        count = 0
+        items_added = product_count_dic.values()
+        for item_count in items_added:
+            count += item_count
+        total_count_in_cart = self.cm.get_text(pl.totalCountInCart)
+        total_count_in_cart = int(total_count_in_cart)
+        assert count == total_count_in_cart, f"{count} != {total_count_in_cart}"
+
+    def remove_highest_priced_item(self):
+        global price_list
+        price_list = []
+        items = product_count_dic.keys()
+
+        for item in items:
+            price_of_item_in_cart = (
+                pl.priceOfItemInCart[0],
+                pl.priceOfItemInCart[1].replace("product_name", item),
+            )
+            price_of_item = self.cm.get_text(price_of_item_in_cart)[2:]
+            logger.info(f"Price item = {price_of_item}")
+            price_list.append(price_of_item)
+            logger.info(f"List = {price_list}")
+
+        price_list.sort()
+        logger.info(f"Size = {len(price_list)}")
+        max_price = price_list[len(price_list) - 1]
+        logger.info(f"max price = {max_price}")
+        remove_icon = (
+            pl.removeMaxPriceItem[0],
+            pl.removeMaxPriceItem[1].replace("price", max_price)
+        )
+        self.cm.click_element(remove_icon)
+        time.sleep(2)

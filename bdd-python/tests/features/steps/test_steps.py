@@ -240,3 +240,13 @@ def refresh_page(context):
     cm = CommonMethods(context.driver)
     cm.refresh_page()
     time.sleep(2)
+
+@then(u'the user verifies the total count shown')
+def verify_count_shown(context):
+    pp = ProductPage(context.driver)
+    pp.verify_count_shown()
+
+@then(u'user remove the highest priced item from cart')
+def step_remove_highest_quantity_item(context):
+    pp = ProductPage(context.driver)
+    pp.remove_highest_priced_item()

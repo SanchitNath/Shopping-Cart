@@ -7,7 +7,7 @@ Background: Launch the browser and open the website
     Given Launch the browser
     Then get all products list
 
-@Scenario5
+@Scenario6
 @smoke @sanity @web
 Scenario: Verify user can delete items in cart
     Then the user opens the cart
@@ -24,7 +24,7 @@ Scenario: Verify user can delete items in cart
     Then the user verifies price reduced to zero
     And the user verifies count reduced to zero
 
-@Scenario6
+@Scenario7
 @smoke @sanity @web
 Scenario: Verify user is able to place order
     Then the user opens the cart
