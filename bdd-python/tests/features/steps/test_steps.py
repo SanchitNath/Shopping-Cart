@@ -103,42 +103,42 @@ def step_double_sizes_get_filtered(context, filter_type1, filter_type2):
             (filter_type2 == "XS" or filter_type2 == "S" or filter_type2 == "M" or filter_type2 == "ML" or filter_type2 == "L" or filter_type2 == "XL" or filter_type2 == "XXL") and
             filter_type1 != filter_type2
     ):
-        if filter_type1 == "XS" and filter_type1 == "S":
+        if ((filter_type1 == "XS" and filter_type2 == "S") or (filter_type2 == "XS" and filter_type1 == "S")):
             cm.wait_for_element_visible(pl.extraSmallSizeItem)
             cm.wait_for_element_visible(pl.smallSizeItem)
             product_found = (
                 pl.productsFoundText[0],
                 pl.productsFoundText[1].replace("count", "2"),
             )
-        elif filter_type1 == "S" and filter_type1 == "M":
+        elif ((filter_type1 == "S" and filter_type2 == "M") or (filter_type2 == "S" and filter_type1 == "M")):
             cm.wait_for_element_visible(pl.smallSizeItem)
             cm.wait_for_element_visible(pl.mediumSizedItem)
             product_found = (
                 pl.productsFoundText[0],
                 pl.productsFoundText[1].replace("count", "3"),
             )
-        elif filter_type1 == "M" and filter_type1 == "ML":
+        elif ((filter_type1 == "M" and filter_type2 == "ML") or (filter_type2 == "M" and filter_type1 == "ML")):
             cm.wait_for_element_visible(pl.mediumSizedItem)
             cm.wait_for_element_visible(pl.mediumLargeSizedItem)
             product_found = (
                 pl.productsFoundText[0],
                 pl.productsFoundText[1].replace("count", "2"),
             )
-        elif filter_type1 == "ML" and filter_type1 == "L":
+        elif ((filter_type1 == "ML" and filter_type2 == "L") or (filter_type2 == "ML" and filter_type1 == "L")):
             cm.wait_for_element_visible(pl.mediumSizedItem)
             cm.wait_for_element_visible(pl.mediumLargeSizedItem)
             product_found = (
                 pl.productsFoundText[0],
                 pl.productsFoundText[1].replace("count", "11"),
             )
-        elif filter_type1 == "L" and filter_type1 == "XL":
+        elif ((filter_type1 == "L" and filter_type2 == "XL") or (filter_type2 == "L" and filter_type1 == "XL")):
             cm.wait_for_element_visible(pl.largeSizedItem)
             cm.wait_for_element_visible(pl.extraLargeSizedItem)
             product_found = (
                 pl.productsFoundText[0],
                 pl.productsFoundText[1].replace("count", "13"),
             )
-        elif filter_type1 == "XL" and filter_type1 == "XXL":
+        elif ((filter_type1 == "XL" and filter_type2 == "XXL") or (filter_type2 == "XL" and filter_type1 == "XXL")):
             cm.wait_for_element_visible(pl.extraLargeSizedItem)
             cm.wait_for_element_visible(pl.doubleExtraLargedSizedItem)
             cm.wait_for_element_visible(pl.doubleExtraLargedSizedItem2)
@@ -148,7 +148,7 @@ def step_double_sizes_get_filtered(context, filter_type1, filter_type2):
                 pl.productsFoundText[0],
                 pl.productsFoundText[1].replace("count", "10"),
             )
-        elif filter_type1 == "XXL" and filter_type1 == "XS":
+        elif ((filter_type1 == "XXL" and filter_type2 == "XS") or (filter_type2 == "XXL" and filter_type1 == "XS")):
             cm.wait_for_element_visible(pl.doubleExtraLargedSizedItem)
             cm.wait_for_element_visible(pl.doubleExtraLargedSizedItem2)
             cm.wait_for_element_visible(pl.doubleExtraLargedSizedItem3)
