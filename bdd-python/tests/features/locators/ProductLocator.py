@@ -36,3 +36,4 @@ subTotalPrice = (By.XPATH, "//p[text()='SUBTOTAL']/following::p[contains(text(),
 checkoutBtn = (By.XPATH, "//button[text()='Checkout']")
 inorderedProducts = (By.XPATH, "(//p[contains(.,'Quantity: ')])[order]/preceding-sibling::p[text()='product_name']")
 emptyCartMessage = (By.XPATH, "//p[text()='Add some products in the cart ']")
+removeMaxPriceItem = (By.XPATH, "(//p[contains(text(),'price')]/preceding::button[@title='remove product from cart'])[last()]")
